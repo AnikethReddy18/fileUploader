@@ -3,7 +3,8 @@ import session from "express-session";
 import { PrismaSessionStore } from "@quixo3/prisma-session-store";
 import {PrismaClient} from "@prisma/client"
 
-import signupRouter from "./routes/signup.js"
+import signupRouter from "./routes/signupRouter.js"
+import loginRouter from "./routes/loginRouter.js"
 
 const app = express();
 app.set("view engine", 'ejs')
@@ -29,5 +30,6 @@ app.get("/", (req, res)=>{
 })
 
 app.use("/signup", signupRouter)
+app.use("/login", loginRouter)
 
 app.listen(3000, ()=>console.log("Listening at http://localhost:3000"))

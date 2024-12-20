@@ -2,9 +2,12 @@ import express from "express"
 import session from "express-session";
 import { PrismaSessionStore } from "@quixo3/prisma-session-store";
 import {PrismaClient} from "@prisma/client"
+import passport from "passport";
 
+import "./passport-config.js"
 import signupRouter from "./routes/signupRouter.js"
 import loginRouter from "./routes/loginRouter.js"
+import homeRouter from "./routes/homeRouter.js"
 
 const app = express();
 app.set("view engine", 'ejs')
@@ -25,10 +28,10 @@ app.use(session({
     saveUninitialized: false  
 }))
 
-app.get("/", (req, res)=>{
-    res.render("home")
-})
+app.use(passport.initialize())
+app.use(passport.session());
 
+app.use("/", homeRouter)
 app.use("/signup", signupRouter)
 app.use("/login", loginRouter)
 

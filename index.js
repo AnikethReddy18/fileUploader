@@ -8,6 +8,7 @@ import "./passport-config.js"
 import signupRouter from "./routes/signupRouter.js"
 import loginRouter from "./routes/loginRouter.js"
 import homeRouter from "./routes/homeRouter.js"
+import logoutRouter from "./routes/logoutRouter.js";
 
 const app = express();
 app.set("view engine", 'ejs')
@@ -34,5 +35,6 @@ app.use(passport.session());
 app.use("/", homeRouter)
 app.use("/signup", signupRouter)
 app.use("/login", loginRouter)
+app.use("/logout", logoutRouter)
 
 app.listen(3000, ()=>console.log("Listening at http://localhost:3000"))

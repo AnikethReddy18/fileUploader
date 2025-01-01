@@ -14,6 +14,19 @@ model users {
   password String @db.VarChar(255)
 }
 
+model Folder{
+  id Int @id @default(autoincrement())
+  name String @db.VarChar(255)
+  files File[]
+}
+
+model File{
+  id Int @id @default(autoincrement())
+  name String @db.VarChar(255)
+  folder Folder @relation(fields: [folderId], references: [id])
+  folderId Int
+}
+
 
 model Session {
   id        String   @id

@@ -8,5 +8,22 @@
 <body>
     Welcome to file uploader
     <a href="/logout">logout</a>
+
+    <!-- <form action="/fileUpload" method="post" enctype="multipart/form-data">
+        <input type="file" name="file">
+        <button>Submit</button>
+    </form> -->
+
+    <form action="/newFolder" method="post">
+        <input type="text" name="folderName" placeholder="Folder Name">
+        <button>New Folder</button>
+    </form>
+    
+    <% for(const folder of folders){ %>
+        <div class="folder">
+            <a href="/<%- folder.id %>"><%- folder.name %></a>
+            <a href="/<%- folder.id %>/delete">delete</a>
+        </div>
+    <%} %>
 </body>
 </html>

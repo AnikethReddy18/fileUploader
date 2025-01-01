@@ -9,6 +9,7 @@ import signupRouter from "./routes/signupRouter.js"
 import loginRouter from "./routes/loginRouter.js"
 import homeRouter from "./routes/homeRouter.js"
 import logoutRouter from "./routes/logoutRouter.js";
+import fileUploadRouter from "./routes/fileUploadRouter.js"
 
 const app = express();
 app.set("view engine", 'ejs')
@@ -32,9 +33,10 @@ app.use(session({
 app.use(passport.initialize())
 app.use(passport.session());
 
-app.use("/", homeRouter)
 app.use("/signup", signupRouter)
-app.use("/login", loginRouter)
 app.use("/logout", logoutRouter)
+app.use("/login", loginRouter)
+app.use("/fileUpload", fileUploadRouter)
+app.use("/", homeRouter)
 
 app.listen(3000, ()=>console.log("Listening at http://localhost:3000"))

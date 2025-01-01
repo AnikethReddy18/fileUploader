@@ -30,3 +30,52 @@ export async function createUser(username, password){
         }
     })
 }
+
+export async function createFolder(folderName){
+    await prisma.folder.create({
+        data:{
+            name: folderName
+        }
+    })
+}
+
+export async function getFolders(){
+    const folders = await prisma.folder.findMany();
+    return folders
+}
+
+export async function deleteFolder(id){
+    await prisma.folder.delete({
+        where: {
+            id: parseInt(id)
+        }
+    })
+}
+
+export async function getFiles(id){
+    const files = await prisma.file.findMany({
+        where:{
+            folderId: id
+        }
+    })
+
+    return files
+}
+
+export async function createFile(folderId, fileName){
+    await prisma.file.create({
+        data:{
+            name: fileName,
+            folderId
+        }
+    })
+}
+
+
+export async function deleteFile(fileId){
+    await prisma.file.delete({
+        where:{
+            id: fileId
+        }
+    })
+}

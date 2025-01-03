@@ -26,6 +26,7 @@ model File{
   fileName String @db.VarChar(255)
   folder Folder @relation(fields: [folderId], references: [id], onDelete: Cascade)
   folderId Int
+  public_id String @db.VarChar(255)
 }
 
 

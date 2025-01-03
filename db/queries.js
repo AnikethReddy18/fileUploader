@@ -62,11 +62,12 @@ export async function getFiles(id){
     return files
 }
 
-export async function createFile(fileName, url,folderId){
+export async function createFile(fileName, public_id,url,folderId){
     const file = await prisma.file.create({
         data:{
             fileName,
             url,
+            public_id,
             folderId: parseInt(folderId)
         }
     })
@@ -78,7 +79,18 @@ export async function createFile(fileName, url,folderId){
 export async function deleteFile(fileId){
     await prisma.file.delete({
         where:{
-            id: fileId
+            id: parseInt(fileId)
         }
     })
+}
+
+
+export async function getFile(fileId){
+    const file = await prisma.file.findUnique({
+        where:{
+            id: parseInt(fileId)
+        }
+    })
+
+    return file
 }

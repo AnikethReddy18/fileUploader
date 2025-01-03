@@ -26,13 +26,3 @@ export async function getFolderController(req, res){
     const files = await getFiles(folderID)
     res.render("files", {folderID, files})
 }
-
-export async function postFile(req, res){
-    await createFile(parseInt(req.params.id), req.body.fileName)
-    res.redirect("/"+req.params.id)
-}
-
-export async function deleteFileController(req, res){
-    await deleteFile(parseInt(req.params.fileId));
-    res.redirect("/"+req.params.folderId)
-}

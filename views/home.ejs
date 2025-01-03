@@ -21,7 +21,7 @@
     
     <% for(const folder of folders){ %>
         <div class="folder">
-            <a href="/<%- folder.id %>"><%- folder.name %></a>
+            <a href="/folder/<%- folder.id %>"><%- folder.name %></a>
             <a href="/<%- folder.id %>/delete">delete</a>
         </div>
     <%} %>

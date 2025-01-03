@@ -22,7 +22,8 @@ export async function deleteFolderController(req, res){
 
 export async function getFolderController(req, res){
     const folderID = req.params.id;
-    const files = await getFiles(parseInt(folderID))
+
+    const files = await getFiles(folderID)
     res.render("files", {folderID, files})
 }
 

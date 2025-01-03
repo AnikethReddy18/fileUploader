@@ -7,14 +7,14 @@
 </head>
 <body>
     <a href="/">home</a>
-    <form action="<%- folderID %>/newFile" method="post">
-        <input type="text" name="fileName" placeholder="File Name">
-        <button>New File</button>
+    <form action="<%- folderID %>/newFile" method="post" enctype="multipart/form-data">
+        <input type="file" name="file">
+        <button>Submit</button>
     </form>
 
     <% for(const file of files){ %>
         <div class="file">
-            <a href="/<%- folderID %>/<%- file.id %>"><%- file.name %></a>
+            <a target="_blank" href=<%-file.url %> > <%- file.fileName %></a>
             <a href="/<%- folderID %>/<%- file.id %>/delete">delete</a>
         </div>
     <%} %>

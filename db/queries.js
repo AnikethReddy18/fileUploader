@@ -55,20 +55,23 @@ export async function deleteFolder(id){
 export async function getFiles(id){
     const files = await prisma.file.findMany({
         where:{
-            folderId: id
+            folderId: parseInt(id)
         }
     })
 
     return files
 }
 
-export async function createFile(folderId, fileName){
-    await prisma.file.create({
+export async function createFile(fileName, url,folderId){
+    const file = await prisma.file.create({
         data:{
-            name: fileName,
-            folderId
+            fileName,
+            url,
+            folderId: parseInt(folderId)
         }
     })
+
+    return file;
 }
 
 
